@@ -134,7 +134,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.9"
-            app:srcCompat="@drawable/edit_img" />
+            android:src="@drawable/ic_baseline_edit_24"
+            />
 
         <ImageButton
             android:id="@+id/deleteButton"
@@ -148,7 +149,8 @@
             app:layout_constraintStart_toEndOf="@+id/textView3"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.9"
-            app:srcCompat="@drawable/delete_img" />
+            android:src="@drawable/ic_baseline_delete_forever_24"
+            />
 
         <TextView
             android:id="@+id/idview"
