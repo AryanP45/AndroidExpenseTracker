@@ -13,19 +13,31 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class delete extends AppCompatActivity {
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete);
+        Intent intent= getIntent();
+        id= intent.getStringExtra("rowId");
+        Toast.makeText(this, ""+id, Toast.LENGTH_SHORT).show();
 
-        Button btnDelete= (Button) findViewById(R.id.btnDel);
-        final EditText Delid= (EditText) findViewById(R.id.id);
+        Button btnDelete=  findViewById(R.id.btnDel);
+        Button btnCancel = findViewById(R.id.cancel);
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(i);
+            }
+        });
 
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String IdToBeDeleted= Delid.getText().toString();
+                String IdToBeDeleted= id;
 
                 FeedReaderDbHelper dbHelper = new FeedReaderDbHelper(delete.this);
                 SQLiteDatabase db = dbHelper.getWritableDatabase();

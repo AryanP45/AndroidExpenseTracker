@@ -127,12 +127,14 @@ public class add extends AppCompatActivity {
         final EditText amount=(EditText) findViewById(R.id.amount);
         final Spinner category = (Spinner)findViewById(R.id.spinner);
         final TextView date=(TextView) findViewById(R.id.tvDate);
+        final EditText note= (EditText) findViewById(R.id.note);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String amnt= amount.getText().toString();
                 String cat= category.getSelectedItem().toString();
                 String dte = date.getText().toString();
+                String not = note.getText().toString();
 
                 FeedReaderDbHelper dbHelper = new FeedReaderDbHelper(add.this);
 
@@ -144,6 +146,7 @@ public class add extends AppCompatActivity {
                 values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_Amount, amnt);
                 values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_Category, cat);
                 values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_Date, dte);
+                values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_Note,not);
 
 // Insert the new row, returning the primary key value of the new row
                 long newRowId = db.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);

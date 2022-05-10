@@ -31,10 +31,15 @@ public class edit extends AppCompatActivity {
 
     private TextView mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
+    private String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
+        Intent intent= getIntent();
+        id= intent.getStringExtra("rowId");
+        Toast.makeText(this, ""+id, Toast.LENGTH_SHORT).show();
+
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
 
@@ -125,7 +130,7 @@ public class edit extends AppCompatActivity {
         final EditText amount=(EditText) findViewById(R.id.amount);
         final Spinner category = (Spinner)findViewById(R.id.spinner);
         final TextView date=(TextView) findViewById(R.id.tvDate);
-        final EditText editid=(EditText) findViewById(R.id.eid);
+        final  EditText note = (EditText) findViewById(R.id.note);
         Button btnEdit =(Button) findViewById(R.id.btnEdit);
 
         btnEdit.setOnClickListener(new View.OnClickListener() {
@@ -138,14 +143,17 @@ public class edit extends AppCompatActivity {
                 String amnt = amount.getText().toString();
                 String cat= category.getSelectedItem().toString();
                 String dte = date.getText().toString();
+                String not = note.getText().toString();
                 ContentValues values = new ContentValues();
                 values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_Amount, amnt);
                 values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_Category, cat);
                 values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_Date, dte);
+                values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_Note, not);
+
 
 // Which row to update, based on the title
                 String selection = BaseColumns._ID + " LIKE ?";
-                String[] selectionArgs = { editid.getText().toString() };
+                String[] selectionArgs = { id };
 
                 int count = db.update(
                         FeedReaderContract.FeedEntry.TABLE_NAME,
@@ -156,13 +164,13 @@ public class edit extends AppCompatActivity {
                 if(count>0)
                 {
                     Toast toast= Toast.makeText(getApplicationContext(),
-                            "Entry with  ID " + editid.getText().toString() + " is Updated Successfully!", Toast.LENGTH_SHORT);
+                            "Entry with  ID " + id + " is Updated Successfully!", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 0);
                     toast.show();
                 }
                 else if(count==0){
                     Toast toast= Toast.makeText(getApplicationContext(),
-                            "No such Entry with  ID " + editid.getText().toString() + " Exists in DB!!", Toast.LENGTH_SHORT);
+                            "No such Entry with  ID " + id + " Exists in DB!!", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 0);
                     toast.show();
                 }

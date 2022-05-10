@@ -3,11 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/layout_border.xml" value="0.214" />
+        <entry key="app/src/main/res/drawable/layout_drawable.xml" value="0.214" />
+        <entry key="app/src/main/res/drawable/round_rect.xml" value="0.2695" />
+        <entry key="app/src/main/res/drawable/round_rect_food.xml" value="0.269" />
+        <entry key="app/src/main/res/drawable/round_rect_other.xml" value="0.269" />
+        <entry key="app/src/main/res/drawable/round_rect_study.xml" value="0.269" />
         <entry key="app/src/main/res/layout/activity_add.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_delete.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_edit.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.159375" />
-        <entry key="app/src/main/res/layout/activity_show.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_delete.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_edit.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_expense_list.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_show.xml" value="0.33" />
         <entry key="app/src/main/res/layout/spinner_item.xml" value="0.1" />
       </map>
     </option>

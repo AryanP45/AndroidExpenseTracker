@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".add">
-
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,7 +22,6 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txt1"
             android:inputType="numberDecimal"
             android:digits="0123456789.,"
             android:layout_marginTop="50dp"
@@ -47,32 +39,37 @@
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/amount"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="50dp"
             android:layout_marginRight="20dp" />
 
+        <EditText
+            android:id="@+id/note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="50dp"
+            android:hint="Enter Note..." />
+
         <TextView
+            android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/spinner"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"
             android:text="Click Here to Select a Date"
             android:textColor="#008CBA"
-            android:textStyle="italic"
-            android:id="@+id/tvDate"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="20dp"
-            android:textSize="25sp"/>
+            android:textSize="25sp"
+            android:textStyle="italic" />
+
         <Button
+            android:id="@+id/btnSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvDate"
             android:layout_marginLeft="20dp"
-            android:id="@+id/btnSave"
-            android:text="Save"
-            android:layout_marginTop="50dp"
-            android:background="#4CAF50"/>
+            android:layout_marginTop="87dp"
+            android:background="#4CAF50"
+            android:text="Save" />
 
-    </RelativeLayout>
-
-</ScrollView>
+</LinearLayout>

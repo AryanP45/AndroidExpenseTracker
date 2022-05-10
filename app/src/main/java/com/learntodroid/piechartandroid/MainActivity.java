@@ -1,83 +1,79 @@
 package com.learntodroid.piechartandroid;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.provider.BaseColumns;
-import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.learntodroid.piechartandroid.FeedReaderDbHelper;
+import com.learntodroid.piechartandroid.adapter.RecyclerViewAdapter;
+
+import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
-
+    private RecyclerView recyclerView;
+    private RecyclerViewAdapter recyclerViewAdapter;
+    private ArrayList<rowStructure> expenselist = new ArrayList<>();
+    private ArrayAdapter<String> arrayAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.d("Started", "Main Activity");
+        //Recycler View Initilization
 
-        Float exp[]= calculateExpenses();
-        Float val1;
-        Float val2;
-        Float val3;
-        Float val4;
-        val1=exp[0];
-        val2=exp[1];
-        val3=exp[2];
-        val4=exp[3];
+        recyclerView = findViewById(R.id.list);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        FeedReaderDbHelper dbHelper = new FeedReaderDbHelper(this);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-        TextView textView2= (TextView) findViewById(R.id.txt2);
-        textView2.setText(""+ val1+"%");
-        textView2.setTypeface(Typeface.SERIF, Typeface.ITALIC);
+        String sortOrder =
+                BaseColumns._ID + " ASC";
 
+        Cursor cursor = db.query(
+                FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
+                null,             // The array of columns to return (pass null to get all)
+                null,              // The columns for the WHERE clause
+                null,          // The values for the WHERE clause
+                null,                   // don't group the rows
+                null,                   // don't filter by row groups
+                sortOrder               // The sort order
+        );
 
-        TextView textView4= (TextView) findViewById(R.id.txt4);
-        textView4.setText(""+ val2+"%");
-        textView4.setTypeface(Typeface.SERIF, Typeface.ITALIC);
+        while(cursor.moveToNext()) {
+            String tempstr = " ";
+            //            for showing list of records
+        expenselist.add(new rowStructure(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(0)));
+            tempstr = " \n " + tempstr + "\t" + cursor.getString(0) + "\t\t\t"
+                    + cursor.getString(1) + "\t\t\t" + cursor.getString(2)+
+                    "\t\t\t" + cursor.getString(3) +"\t\t\t"+cursor.getString(4)+"\n";
 
+        }
+        cursor.close();
 
-        TextView textView6= (TextView) findViewById(R.id.txt6);
-        textView6.setText(""+val3+"%");
-        textView6.setTypeface(Typeface.SERIF, Typeface.ITALIC);
+        recyclerViewAdapter = new RecyclerViewAdapter(MainActivity.this,expenselist);
+        recyclerView.setAdapter(recyclerViewAdapter);
 
-
-        TextView textView8= (TextView) findViewById(R.id.txt8);
-        textView8.setText(""+val4+"%");
-        textView8.setTypeface(Typeface.SERIF, Typeface.ITALIC);
 
         Button b1= (Button) findViewById(R.id.btn1);//add
-        Button b2=(Button)findViewById(R.id.btn2);//edit
-        Button b3=(Button)findViewById(R.id.btn3);//delete
         Button b4=(Button) findViewById(R.id.btn4);//show All
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),add.class);
-                startActivity(i);
-            }
-        });
-
-        b2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),edit.class);
-                startActivity(i);
-            }
-        });
-
-        b3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i= new Intent(getApplicationContext(),delete.class);
                 startActivity(i);
             }
         });
@@ -163,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
         sortOrder = BaseColumns._ID + " ASC";
         cursor = db.query(
                 FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
-                projection,             // The array of columns to return (pass null to get all)
+                null,             // The array of columns to return (pass null to get all)
                 selection,              // The columns for the WHERE clause
                 selectionArgs,          // The values for the WHERE clause
                 null,                   // don't group the rows
@@ -183,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
         sortOrder = BaseColumns._ID + " ASC";
         cursor = db.query(
                 FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
-                projection,             // The array of columns to return (pass null to get all)
+                null,             // The array of columns to return (pass null to get all)
                 selection,              // The columns for the WHERE clause
                 selectionArgs,          // The values for the WHERE clause
                 null,                   // don't group the rows
@@ -223,4 +219,5 @@ public class MainActivity extends AppCompatActivity {
         expenses[3]=Other;
         return expenses;
     }
+
 }

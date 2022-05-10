@@ -39,49 +39,48 @@
 
             />
 
-        <Spinner
-            android:id="@+id/spinner"
+        <EditText
+            android:id="@+id/note"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/amount"
-            android:layout_marginTop="50dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/spinner"
-            android:text="Click Here to Select a Date"
-            android:textColor="#008CBA"
-            android:textStyle="italic"
-            android:id="@+id/tvDate"
             android:layout_marginTop="50dp"
-            android:layout_marginLeft="20dp"
-            android:textSize="25sp"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvDate"
-            android:inputType="numberDecimal"
-            android:digits="0123456789.,"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:ellipsize="start"
+            android:hint="Enter Note"
             android:maxLength="10"
-            android:id="@+id/eid"
-            android:hint="Enter ID"
             android:singleLine="true"
 
             />
 
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/note"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="20dp" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spinner"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"
+            android:text="Click Here to Select a Date"
+            android:textColor="#008CBA"
+            android:textSize="25sp"
+            android:textStyle="italic" />
+
+
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/eid"
+            android:layout_below="@id/tvDate"
             android:layout_marginLeft="20dp"
             android:id="@+id/btnEdit"
             android:text="Save"
