@@ -36,7 +36,7 @@ Contributions are what make the open source community such an amazing place to b
 
 ### :handshake: Our Contributors
 
-  <a href="https://github.com/learntodroid">
+  <a href="https://github.com/AryanP45/AndroidExpenseTracker/graphs/contributors">
     <img src="https://contrib.rocks/image?repo=AryanP45/AndroidExpenseTracker" />
   </a>
   
