@@ -35,12 +35,10 @@ Contributions are what make the open source community such an amazing place to b
 5. Open a Pull Request
 
 ### :handshake: Our Contributors
-<details>
-  <summary>Click to view!</summary>
-  <a href="https://github.com/AryanP45/AndroidExpenseTracker/graphs/contributors">
+
+  <a href="https://github.com/learntodroid">
     <img src="https://contrib.rocks/image?repo=AryanP45/AndroidExpenseTracker" />
   </a>
-</details>
   
   
 <!-- LICENSE -->
